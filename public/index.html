@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Car Info Tracker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<link rel="stylesheet" href="styles.css">
+
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body id="background" ng-app="carTrackerApp">
+	<div id="mainDiv" ng-controller="carTrackerController">
+		<form id="carDataForm" data-ng-submit="submitForm()">
+			<div class="form-group">
+				<label for="Time Stamp">Time Stamp</label>
+				<input class="form-control" type="datetime-local" ng-model="newItem.timestamp">
+			</div>
+			<div class="radio">
+				<label class="col-sm-2 control-label">
+					<input type="radio" ng-model="newItem.type" value="fuel">
+					Fuel
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" ng-model="newItem.type" value="service">
+					Service
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" ng-model="newItem.type" value="other">
+					Other
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="Car">Car</label>
+				<input class="form-control" type="text" ng-model="newItem.car" value="Gypsy-Danger" disabled>
+			</div>
+			<div class="form-group">
+				<label for="SubType">SubType</label>
+				<input class="form-control" type="text" ng-model="newItem.subtype" value="" disabled>
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Odometer</label>
+				<input class="form-control" type="text" ng-model="newItem.odometer" value="">
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Gallons</label>
+				<input class="form-control" type="text" ng-model="newItem.gallons" value="">
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Price</label>
+				<input class="form-control" type="text" ng-model="newItem.price" value="">
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Total</label>
+				<input class="form-control" type="text" ng-model="newItem.total" value="">
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Location</label>
+				<input class="form-control" type="text" ng-model="newItem.location" value="">
+			</div>
+			<div class="form-group">
+				<label for="Odometer">Fuel Grade</label>
+				<input class="form-control" type="text" ng-model="newItem.fuelGrade" value="">
+			</div>
+			<button class="btn btn-default" type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</body>
+</html>
