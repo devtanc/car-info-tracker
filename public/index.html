@@ -73,8 +73,18 @@
 				<label for="Odometer">Fuel Grade</label>
 				<input class="form-control" type="text" ng-model="newItem.fuelGrade" value="">
 			</div>
-			<button class="btn btn-default" type="submit" class="btn btn-default">Submit</button>
+			<button class="btn btn-info" type="submit">Submit</button>
+			<button class="btn btn-danger" ng-click="resetForm()" type="reset">Clear Form</button>
 		</form>
+		<div id="oilLevelIndicator" class="progress" ng-click="updateOilAmount($event)">
+			<div class="progress-bar" role="progressbar" aria-valuenow="{{oilPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{oilPercentage}}%;">
+				<span class="sr-only">{{oilPercentage}}% Complete</span>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class="pull-left">Empty</div>
+			<div class="pull-right">Full</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -95,6 +95,19 @@ angular.module('carTrackerApp', [])
 	};
 }])
 .controller('carTrackerController', ['$scope', 'couchReq', function($scope, couchReq) {
+	var BLANK  = {
+		"timestamp": "",
+		"type": "",
+		"car": "Gypsy-Danger",
+		"subtype": null,
+		"odometer": "",
+		"gallons": "",
+		"price": "",
+		"total": "",
+		"location": "",
+		"fuelGrade": ""
+	};
+
 	$scope.newItem = {
 		"timestamp": "",
 		"type": "",
@@ -108,7 +121,19 @@ angular.module('carTrackerApp', [])
 		"fuelGrade": ""
 	};
 
+	$scope.oilPercentage = 75;
+
 	$scope.submitForm = function() {
 		couchReq.add($scope.newItem);
-	}
+	};
+
+	$scope.resetForm = function() {
+		for(var key in $scope.newItem) {
+			$scope.newItem[key] = BLANK[key];
+		}
+	};
+
+	$scope.updateOilAmount = function(event) {
+		$scope.oilPercentage = event.offsetX / document.getElementById('oilLevelIndicator').clientWidth * 100;
+	};
 }]);
