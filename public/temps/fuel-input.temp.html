@@ -1,0 +1,40 @@
+<div id="header" class="centered">
+	<span class="text">Fuel Refill Log</span>
+</div>
+<form id="carDataForm" data-ng-submit="submitForm()">
+	<div class="form-group">
+		<label for="Time Stamp">Time Stamp</label>
+		<input class="form-control" type="datetime-local" ng-model="newRefuel.timestamp">
+	</div>
+<!--
+	<div class="form-group">
+		<label for="Car">Car</label>
+		<input class="form-control" type="text" ng-model="newRefuel.car" value="Gypsy-Danger" disabled>
+	</div>
+-->
+	<div class="form-group">
+		<label for="Odometer">Odometer</label>
+		<input class="form-control" type="text" ng-model="newRefuel.odometer" value="">
+	</div>
+	<div class="form-group">
+		<label for="Gallons">Gallons</label>
+		<input class="form-control" type="text" ng-model="newRefuel.gallons" value="">
+	</div>
+	<div class="form-group">
+		<label for="Price">Price</label>
+		<input class="form-control" type="text" ng-model="newRefuel.price" value="">
+	</div>
+	<div class="form-group">
+		<label for="Total">Total</label>
+		<input class="form-control" type="text" ng-model="newRefuel.total" value="">
+	</div>
+	<div class="form-group">
+		<label for="Location">Location</label>
+		<input class="form-control" type="text" ng-model="newRefuel.location" value="">
+	</div>
+	<div class="form-group">
+		<label for="Fuel Grade">Fuel Grade</label>
+		<input class="form-control" type="text" ng-model="newRefuel.fuelGrade" value="">
+	</div>
+	<div submission-buttons></div>
+</form>

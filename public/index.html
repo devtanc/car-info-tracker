@@ -4,7 +4,11 @@
 	<title>Car Info Tracker</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
 	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript" src="/js/app-controllers.js"></script>
+	<script type="text/javascript" src="/js/app-directives.js"></script>
+	<script type="text/javascript" src="/js/app-services.js"></script>
 	<link rel="stylesheet" href="styles.css">
 
 	<!-- JQuery -->
@@ -17,74 +21,8 @@
 </head>
 
 <body id="background" ng-app="carTrackerApp">
-	<div id="mainDiv" ng-controller="carTrackerController">
-		<form id="carDataForm" data-ng-submit="submitForm()">
-			<div class="form-group">
-				<label for="Time Stamp">Time Stamp</label>
-				<input class="form-control" type="datetime-local" ng-model="newItem.timestamp">
-			</div>
-			<div class="radio">
-				<label class="col-sm-2 control-label">
-					<input type="radio" ng-model="newItem.type" value="fuel">
-					Fuel
-				</label>
-			</div>
-			<div class="radio">
-				<label>
-					<input type="radio" ng-model="newItem.type" value="service">
-					Service
-				</label>
-			</div>
-			<div class="radio">
-				<label>
-					<input type="radio" ng-model="newItem.type" value="other">
-					Other
-				</label>
-			</div>
-			<div class="form-group">
-				<label for="Car">Car</label>
-				<input class="form-control" type="text" ng-model="newItem.car" value="Gypsy-Danger" disabled>
-			</div>
-			<div class="form-group">
-				<label for="SubType">SubType</label>
-				<input class="form-control" type="text" ng-model="newItem.subtype" value="" disabled>
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Odometer</label>
-				<input class="form-control" type="text" ng-model="newItem.odometer" value="">
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Gallons</label>
-				<input class="form-control" type="text" ng-model="newItem.gallons" value="">
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Price</label>
-				<input class="form-control" type="text" ng-model="newItem.price" value="">
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Total</label>
-				<input class="form-control" type="text" ng-model="newItem.total" value="">
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Location</label>
-				<input class="form-control" type="text" ng-model="newItem.location" value="">
-			</div>
-			<div class="form-group">
-				<label for="Odometer">Fuel Grade</label>
-				<input class="form-control" type="text" ng-model="newItem.fuelGrade" value="">
-			</div>
-			<button class="btn btn-info" type="submit">Submit</button>
-			<button class="btn btn-danger" ng-click="resetForm()" type="reset">Clear Form</button>
-		</form>
-		<div id="oilLevelIndicator" class="progress" ng-click="updateOilAmount($event)">
-			<div class="progress-bar" role="progressbar" aria-valuenow="{{oilPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{oilPercentage}}%;">
-				<span class="sr-only">{{oilPercentage}}% Complete</span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="pull-left">Empty</div>
-			<div class="pull-right">Full</div>
-		</div>
+	<div id="mainDiv">
+		<ng-view></ng-view>
 	</div>
 </body>
 </html>
