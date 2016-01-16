@@ -28,3 +28,5 @@ node_modules
 
 # Grunt in-between files for minification
 /public/js/min/min-safe
+
+carTrackerServer.conf

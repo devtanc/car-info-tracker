@@ -14,6 +14,24 @@
 	</div>
 </div>
 <form id="carDataForm" data-ng-submit="submitForm()">
+	<div class="radio">
+		<label>
+			<input type="radio" name="engineTemp" value="Cold" ng-model="newOilLevelCheck.engineTemp" checked>
+			Cold Engine
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			<input type="radio" name="engineTemp" value="Warm" ng-model="newOilLevelCheck.engineTemp">
+			Warm Engine
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			<input type="radio" name="engineTemp" value="Hot" ng-model="newOilLevelCheck.engineTemp">
+			Hot Engine
+		</label>
+	</div>
 	<div class="form-group">
 		<label for="Time Stamp">Time Stamp</label>
 		<input class="form-control" type="datetime-local" ng-model="newOilLevelCheck.timestamp">
@@ -24,3 +42,22 @@
 	</div>
 	<div submission-buttons></div>
 </form>
+<table class="table table-striped top-space">
+	<caption>Oil Level History</caption>
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Odometer</th>
+			<th>Temp</th>
+			<th>Oil Level</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in history | orderBy: item.timestamp">
+			<th>{{item.value.timestamp}}</th>
+			<td>{{item.value.odometer}}</td>
+			<td>{{item.value.engineTemp}}</td>
+			<td>{{item.value.oilLevel}}</td>
+		</tr>
+	</tbody>
+</table>

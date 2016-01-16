@@ -36,3 +36,11 @@
 .set-width-med {
 	min-width: 50%;
 }
+
+.top-space {
+	margin-top:10px;
+}
+
+table caption {
+	text-align: center;
+}

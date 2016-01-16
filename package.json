@@ -4,7 +4,9 @@
   "description": "Simple app to track car usage and expenses",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

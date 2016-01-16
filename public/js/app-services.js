@@ -1,52 +1,34 @@
 var carTrackerApp = angular.module('carTrackerApp');
 
 carTrackerApp.service('couchReq', ['$http', function($http) {
-	var couchConfig = {
-		"baseUrl": 'http://192.168.1.25:40570/',
-		"db": 'car_info',
-		"headers": {
-			"Content-Type": 'application/json'
-		}
-	};
-
-	var uuidList = [];
-
-	var refillUUIDList = function(number) {
-		$http.get(couchConfig.baseUrl + "_uuids?count=" + number).then(function success(res) {
-			uuidList = res.data.uuids;
-		}, function failure(err) {
-			if (err.message.indexOf("ECONNREFUSED")){
-				console.log("Unable to connect to database to obtain UUIDs. Connection refused.");
-			} else {
-				console.log("Caught " + err.name + " | " + err.message);
-			}
-		});
-	};
-
-	refillUUIDList(25);
-
-	var getUUID = function() {
-
-		var uuid = uuidList[0];
-		uuidList.splice(0, 1);
-
-		if (uuidList.length === 0) {
-			refillUUIDList(25);
-		}
-
-		return uuid;
-	};
-
-	this.delete = function(_id, _rev) {
-		var options = {
-			url: couchConfig.baseUrl + couchConfig.db + "/" + _id + "?rev=" + _rev,
-			method: 'DELETE',
+	this.get = function(params) {
+		return $http({
+			url: '/api/get',
+			method: 'POST',
+			data: params, //Object which requires { view: String, queryParams: list of url query param keys and values }
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		};
+		}).then(function success(res) {
+			console.log("RETRIEVED: " + res.data.rows);
+			return res.data.rows;
+		}, function failure(err) {
+			console.log(err);
+		});
+	}
 
-		$http(options).then(function success(res) {
+	this.delete = function(id, rev) {
+		return $http({
+			url: '/api',
+			method: 'DELETE',
+			data: {
+				_id: id,
+				_rev: rev
+			},
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(function success(res) {
 			console.log("DELETED: " + res.data);
 		}, function failure(err) {
 			console.log(err);
@@ -54,17 +36,15 @@ carTrackerApp.service('couchReq', ['$http', function($http) {
 	};
 
 	this.add = function(item) {
-		var options = {
-			url: couchConfig.baseUrl + couchConfig.db + "/" + getUUID(),
-			method: "PUT",
+		return $http({
+			url: '/api',
+			method: "POST",
 			data: item,
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		};
-
-		$http(options).then(function success(res) {
-			console.log("PUT NEW SUCCESSFUL: " + res);
+		}).then(function success(res) {
+			console.log("POST NEW SUCCESSFUL: " + res);
 			return {
 				id: res.id,
 				rev: res.rev
@@ -79,19 +59,27 @@ carTrackerApp.service('couchReq', ['$http', function($http) {
 			delete item.$$hashKey;
 		}
 
-		var options = {
-			url: couchConfig.baseUrl + couchConfig.db + "/" + item._id,
+		return $http({
+			url: '/api',
 			method: 'PUT',
 			data: item,
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		};
-
-		$http(options).then(function success(res) {
+		}).then(function success(res) {
 			console.log("PUT SUCCESSFUL: " + res);
 		}, function failure(err) {
 			console.log(err);
 		});
+	};
+
+	this.parseTimestamps = function(obj) {
+		obj.forEach(function(element) {
+			if (element.value.timestamp) {
+				var date = new Date(element.value.timestamp);
+				element.value.timestamp = date.toLocaleDateString();
+			}
+		});
+		return(obj);
 	};
 }]);
