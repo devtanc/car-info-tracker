@@ -53,7 +53,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in history | orderBy: item.value.timestamp">
+		<tr ng-repeat="item in history | orderBy: value.timestamp">
 			<th>{{item.value.timestamp}}</th>
 			<td>{{item.value.odometer}}</td>
 			<td>{{item.value.engineTemp}}</td>
