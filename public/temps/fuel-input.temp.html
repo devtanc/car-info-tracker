@@ -44,16 +44,18 @@
 		<tr>
 			<th>Date</th>
 			<th>Odometer</th>
-			<th>Temp</th>
-			<th>Oil Level</th>
+			<th>Gallons</th>
+			<th>Total $</th>
+			<th>Grade</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="item in history | orderBy: item.timestamp">
 			<th>{{item.value.timestamp}}</th>
 			<td>{{item.value.odometer}}</td>
-			<td>{{item.value.engineTemp}}</td>
-			<td>{{item.value.oilLevel}}</td>
+			<td>{{item.value.gallons}}</td>
+			<td>{{item.value.total}}</td>
+			<td>{{item.value.fuelGrade}}</td>
 		</tr>
 	</tbody>
 </table>
