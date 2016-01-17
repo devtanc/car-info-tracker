@@ -27,7 +27,7 @@ carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', function
 	$scope.newRefuel = {};
 
 	$scope.submitForm = function() {
-		couchReq.add($scope.newRefuel);
+		couchReq.add($scope.newRefuel).then($scope.resetForm);
 	};
 
 	$scope.resetForm = function() {
@@ -60,7 +60,7 @@ carTrackerApp.controller('OilLevelController', ['$scope', 'couchReq', function($
 	};
 
 	$scope.submitForm = function() {
-		couchReq.add($scope.newOilLevelCheck);
+		couchReq.add($scope.newOilLevelCheck).then($scope.resetForm);
 	};
 
 	$scope.resetForm = function() {

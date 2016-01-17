@@ -10,7 +10,7 @@ carTrackerApp.service('couchReq', ['$http', function($http) {
 				'Content-Type': 'application/json'
 			}
 		}).then(function success(res) {
-			console.log("RETRIEVED: " + res.data.rows);
+			console.log("RETRIEVED: " + res.data.rows.length + " objects");
 			return res.data.rows;
 		}, function failure(err) {
 			console.log(err);

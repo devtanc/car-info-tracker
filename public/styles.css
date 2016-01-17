@@ -44,3 +44,11 @@
 table caption {
 	text-align: center;
 }
+
+.text-right {
+	text-align: right;
+}
+
+.nav-bar {
+	background-color: lightblue;
+}
