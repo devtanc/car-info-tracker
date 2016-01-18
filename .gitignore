@@ -30,3 +30,4 @@ node_modules
 /public/js/min/min-safe
 
 carTrackerServer.conf
+/public/styles

@@ -1,4 +1,4 @@
-angular.module('carTrackerApp', ['ngRoute'])
+angular.module('carTrackerApp', ['ngRoute', 'google.places'])
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	.when('/', {
