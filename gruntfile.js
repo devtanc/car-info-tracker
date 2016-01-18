@@ -7,22 +7,24 @@ module.exports = function(grunt) {
 			},
 			app: {
 				files: {
-					'./public/js/min/min-safe/components/app-controllers.js': ['./public/js/app-controllers.js'],
-					'./public/js/min/min-safe/components/app-directives.js': ['./public/js/app-directives.js'],
-					'./public/js/min/min-safe/components/app-services.js': ['./public/js/app-services.js'],
+					'./public/js/min/min-safe/lib.js': ['./public/js/lib/*.js'],
 					'./public/js/min/min-safe/app.js': ['./public/js/app.js']
 				}
 			}
 		},
 		concat: {
 			js: {
-				src: ['./public/js/min/min-safe/app.js', './public/js/min/min-safe/components/*.js'],
-				dest: './public/js/min/min-safe/app-concat.js'
+				src: ['./public/js/min/min-safe/app.js', './public/js/min/min-safe/lib.js'],
+				dest: './public/js/min/min-safe/concat.js'
+			},
+			css: {
+				src: './public/styles/*.css',
+				dest: './public/concat.css'
 			}
 		},
 		uglify: {
 			js: {
-				src: ['./public/js/min/min-safe/app-concat.js'],
+				src: ['./public/js/min/min-safe/concat.js'],
 				dest: './public/js/min/app-min.js'
 			}
 		}
