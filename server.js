@@ -141,6 +141,10 @@ app.delete('/api', function(req, res) {
 	});
 });
 
+app.post('/api/4DJ9hxk4jnIGQQpH8V4i', function(req, res) {
+	console.log(req.body);
+});
+
 app.listen(PORT_NUMBER, function() {
 	console.log('Listening on port: ' + PORT_NUMBER);
 });
