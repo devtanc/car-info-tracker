@@ -143,6 +143,7 @@ app.delete('/api', function(req, res) {
 
 app.post('/api/4DJ9hxk4jnIGQQpH8V4i', function(req, res) {
 	console.log(req.body);
+	res.status(200).end();
 });
 
 app.listen(PORT_NUMBER, function() {
