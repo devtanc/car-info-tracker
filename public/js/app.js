@@ -13,7 +13,4 @@ angular.module('carTrackerApp', ['ngRoute', 'google.places'])
 		templateUrl: '/temps/oil-level-input.temp.html',
 		controller: 'OilLevelController'
 	});
-
-	// configure html5 to get links working on jsfiddle
-//	$locationProvider.html5Mode(true);
 });

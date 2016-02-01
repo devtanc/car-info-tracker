@@ -15,7 +15,7 @@ carTrackerApp.service('couchReq', ['$http', function($http) {
 		}, function failure(err) {
 			console.log(err);
 		});
-	}
+	};
 
 	this.delete = function(id, rev) {
 		return $http({

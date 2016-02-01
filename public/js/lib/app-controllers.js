@@ -27,6 +27,7 @@ carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', function
 	$scope.newRefuel = {};
 
 	$scope.submitForm = function() {
+		$scope.newRefuel.location = $scope.newRefuel.location.formatted_address;
 		couchReq.add($scope.newRefuel).then($scope.resetForm);
 	};
 
