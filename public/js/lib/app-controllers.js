@@ -21,7 +21,8 @@ carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', function
 		"price": "",
 		"total": "",
 		"location": "",
-		"fuelGrade": ""
+		"fuelGrade": "",
+		"full": false
 	};
 
 	$scope.newRefuel = {};
