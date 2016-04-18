@@ -7,15 +7,19 @@ carTrackerApp.controller('MenuController', ['$scope', '$location', function($sco
 	};
 }]);
 
-carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', function($scope, couchReq) {
-	couchReq.get({view:'fuel', queryParams:{ limit:25 }}).then(function(history) {
-		$scope.history = couchReq.parseTimestamps(history);
+carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', 'dynamoReq', function($scope, couchReq, dynamoReq) {
+//	couchReq.get({view:'fuel', queryParams:{ limit:25 }}).then(function(history) {
+//		$scope.history = couchReq.parseTimestamps(history);
+//	});
+
+	dynamoReq.get('recent').then(function(history) {
+		$scope.history = dynamoReq.parseTimestamps(history);
 	});
 
 	var BLANK  = {
 		"timestamp": "",
-		"type": "fuel",
-		"car": "Gypsy-Danger",
+		"transaction_type": "fuel",
+		"car_name": "Gypsy-Danger",
 		"odometer": "",
 		"gallons": "",
 		"price": "",
@@ -29,7 +33,7 @@ carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', function
 
 	$scope.submitForm = function() {
 		$scope.newRefuel.location = $scope.newRefuel.location.formatted_address;
-		couchReq.add($scope.newRefuel).then($scope.resetForm);
+		dynamoReq.add($scope.newRefuel).then($scope.resetForm);
 	};
 
 	$scope.resetForm = function() {

@@ -13,7 +13,9 @@ var request = require('request');
 var app = express();
 var bodyParser = require('body-parser');
 var logger = require("./logger.js");
+var dynamo = require("./dynamo.js");
 logger.debug('Running in ' + (process.env.NODE_ENV || 'development') + ' mode');
+logger.debug('Dynamo URL: ' + process.env.DYNAMO_URL);
 
 var PORT_NUMBER = process.env.PORT_NUMBER || 3030;
 
@@ -59,6 +61,24 @@ app.post('/api/get', function(req, res) { //Gets item from db
 	});
 });
 
+app.get('/api/dynamo/get/recent', function(req, res) {
+	logger.log('info', '[dynamo] GET request - recent');
+	dynamo.queryRecent('car-info', 'fuel').then(function(data) {
+		res.status(200).json(data).end();
+	}).catch(function(err) {
+		logger.error(err);
+	});
+});
+
+app.get('/api/dynamo/get/all', function(req, res) {
+	logger.log('info', '[dynamo] GET request - all');
+	dynamo.queryAll('car-info', 'fuel').then(function(data) {
+		res.status(200).json(data).end();
+	}).catch(function(err) {
+		logger.error(err);
+	});
+});
+
 app.put('/api', function(req, res) { //Modifies items in couchdb
 	logger.log('info', 'PUT request: [BASEURL/DB/' + req.body._id + ']');
 	request.put({
@@ -69,7 +89,7 @@ app.put('/api', function(req, res) { //Modifies items in couchdb
 	}, function(err, response, body) {
 		if (err) { logger.error(err); }
 		else {
-			res.status(200).json(body);
+			res.status(200).json(body).end();
 		}
 	});
 });
@@ -84,8 +104,20 @@ app.post('/api', function(req, res) { //Creates new items in couchdb
 	}, function(err, response, body) {
 		if (err) { logger.error(err); }
 		else {
-			res.status(200).json(body);
+			res.status(200).json(body).end();
 		}
+	});
+});
+
+app.post('/api/dynamo', function(req, res) { //Creates new items in couchdb
+	logger.info('[dynamo] POST request: [' + JSON.stringify(req.body) + ']');
+	dynamo.put({
+		TableName: 'car-info',
+		Item: req.body
+	}).then(function(data) {
+		res.status(200).json(data).end();
+	}).catch(function(err) {
+		logger.error(err);
 	});
 });
 

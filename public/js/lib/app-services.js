@@ -80,6 +80,49 @@ carTrackerApp.service('couchReq', ['$http', function($http) {
 				element.value.timestamp = date.toLocaleDateString();
 			}
 		});
-		return(obj);
+		return obj;
+	};
+}]);
+
+carTrackerApp.service('dynamoReq', ['$http', function($http) {
+	this.get = function(limit) {
+		return $http({
+			url: '/api/dynamo/get/' + limit,
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(function success(res) {
+			console.log("RETRIEVED: " + res.data.length + " objects");
+			return res.data;
+		}, function failure(err) {
+			console.log(err);
+		});
+	};
+
+	this.parseTimestamps = function(obj) {
+		obj.forEach(function(element) {
+			if (element.timestamp) {
+				var date = new Date(element.timestamp);
+				element.timestamp = date.toLocaleDateString();
+			}
+		});
+		return obj;
+	};
+
+	this.add = function(item) {
+		return $http({
+			url: '/api/dynamo',
+			method: "POST",
+			data: item,
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(function success(res) {
+			console.log("POST NEW SUCCESSFUL: " + res);
+			return res;
+		}, function failure(err) {
+			console.log(err);
+		});
 	};
 }]);
