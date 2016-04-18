@@ -7,11 +7,7 @@ carTrackerApp.controller('MenuController', ['$scope', '$location', function($sco
 	};
 }]);
 
-carTrackerApp.controller('CarTrackerController', ['$scope', 'couchReq', 'dynamoReq', function($scope, couchReq, dynamoReq) {
-//	couchReq.get({view:'fuel', queryParams:{ limit:25 }}).then(function(history) {
-//		$scope.history = couchReq.parseTimestamps(history);
-//	});
-
+carTrackerApp.controller('CarTrackerController', ['$scope', 'dynamoReq', function($scope, dynamoReq) {
 	dynamoReq.get('recent').then(function(history) {
 		$scope.history = dynamoReq.parseTimestamps(history);
 	});
