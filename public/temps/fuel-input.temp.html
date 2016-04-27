@@ -54,11 +54,11 @@
 	</thead>
 	<tbody class="text-muted">
 		<tr ng-repeat="item in history | orderBy:'timestamp'">
-			<th>{{item.timestamp}} || '----'</th>
-			<td>{{item.odometer}} || '----'</td>
-			<td>{{item.gallons}} || '----'</td>
-			<td>{{item.total | currency:"$"}} || '----'</td>
-			<td>{{item.fuelGrade}} || '----'</td>
+			<th>{{item.timestamp || '----'}}</th>
+			<td>{{item.odometer || '----'}}</td>
+			<td>{{item.gallons || '----'}}</td>
+			<td>{{item.total | currency:"$" || '----'}}</td>
+			<td>{{item.fuelGrade || '----'}}</td>
 		</tr>
 	</tbody>
 </table>
