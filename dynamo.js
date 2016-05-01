@@ -100,29 +100,3 @@ dynamoLib.put = function(params) {
 };
 
 module.exports = dynamoLib;
-
-//---------------------------------------------------------------------------------------------------------//
-//var request = require('request');
-//request.get({
-//	url: process.env.COUCH_FUEL_URL,
-//	json: true
-//}, function(err, response, body) {
-//	if (err) { throw err; }
-//	else {
-//		body.rows.forEach(function(row) {
-//			var item = {
-//				car_name: row.value.car,
-//				timestamp: row.value.timestamp,
-//				transaction_type: row.value.type,
-//				odometer: row.value.odometer,
-//				gallons: row.value.gallons,
-//				price: row.value.price,
-//				total: row.value.total,
-//				location: row.value.location,
-//				full: row.value.full,
-//				fuelGrade: row.value.fuelGrade
-//			};
-//			dynamoLib.put({ Item: item });
-//		});
-//	}
-//});

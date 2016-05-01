@@ -1,3 +1,5 @@
+/* global angular */
+
 var carTrackerApp = angular.module('carTrackerApp');
 
 carTrackerApp.service('couchReq', ['$http', function($http) {
