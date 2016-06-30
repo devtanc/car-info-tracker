@@ -5,7 +5,8 @@ var q = require('q');
 
 AWS.config.update({
 	region: "us-west-2",
-	endpoint: process.env.DYNAMO_URL
+	endpoint: process.env.DYNAMO_URL,
+	credentials: new AWS.SharedIniFileCredentials({profile: process.env.AWS_PROFILE})
 });
 
 var dynamoLib = {};
@@ -36,7 +37,7 @@ dynamoLib.queryRange = function(tableName, type, from, to) {
 	var deferred = q.defer();
 	docClient.query(dynamoLib.buildRangeQueryParams(tableName, type, from, to), function(err, data) {
 		if (err) {
-			deferred.reject("Unable to query. Error:" + JSON.stringify(err, null, 2));
+			deferred.reject("[queryRange] Unable to query. Error:" + JSON.stringify(err, null, 2));
 		} else {
 			deferred.resolve(data.Items);
 		}
@@ -59,7 +60,7 @@ dynamoLib.queryRecent = function(tableName, type) {
 		}
 	}, function(err, data) {
 		if (err) {
-			deferred.reject("Unable to query. Error:" + JSON.stringify(err, null, 2));
+			deferred.reject("[queryRecent] Unable to query. Error:" + JSON.stringify(err, null, 2));
 		} else {
 			deferred.resolve(data.Items);
 		}
@@ -77,7 +78,7 @@ dynamoLib.queryAll = function(tableName, type) {
 		}
 	}, function(err, data) {
 		if (err) {
-			deferred.reject("Unable to query. Error:" + JSON.stringify(err, null, 2));
+			deferred.reject("[queryAll] Unable to query. Error:" + JSON.stringify(err, null, 2));
 		} else {
 			deferred.resolve(data.Items);
 		}
