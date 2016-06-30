@@ -14,8 +14,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var logger = require("./logger.js");
 var dynamo = require("./dynamo.js");
+
 logger.debug('Running in ' + (process.env.NODE_ENV || 'development') + ' mode');
 logger.debug('Dynamo URL: ' + process.env.DYNAMO_URL);
+logger.debug('Dynamo Table: ' + process.env.DYNAMO_TABLE);
 
 var PORT_NUMBER = process.env.PORT_NUMBER || 3030;
 
