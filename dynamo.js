@@ -12,7 +12,7 @@ AWS.config.update({
 var dynamoLib = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
-var _table = 'car-info';
+var _table = process.env.DYNAMO_TABLE;
 var _car_name = 'Gypsy-Danger';
 
 dynamoLib.buildRangeQueryParams = function(table, type, from, to) {
