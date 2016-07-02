@@ -41,24 +41,35 @@
 	</div>
 	<div submission-buttons></div>
 </form>
+<hr/>
+<table id="navBar">
+	<tbody>
+		<tr>
+			<td ng-repeat="pill in navPills"><div ng-class="pill.active ? 'active' : ''" ng-click="setMapCenter(pill.value);selectPill(pill)">{{pill.name}}</div></td>
+		</tr>
+	</tbody>
+</table>
+<hr/>
+<img ng-src="{{staticMapUrl}}">
+<hr/>
 <table class="table table-striped top-space">
 	<caption>Fuel Log History</caption>
 	<thead>
 		<tr>
 			<th>Date</th>
 			<th>Odometer</th>
-			<th>Gallons</th>
-			<th>Total $</th>
-			<th>Grade</th>
+			<th class="text-right">Gallons</th>
+			<th class="text-right">Total $</th>
+			<!--<th>Grade</th>-->
 		</tr>
 	</thead>
 	<tbody class="text-muted">
-		<tr ng-repeat="item in history | limitTo:10 | orderBy:'timestamp'">
+		<tr ng-repeat="item in history | orderBy:'timestamp'">
 			<th>{{item.timestamp || '----'}}</th>
 			<td>{{item.odometer || '----'}}</td>
-			<td>{{item.gallons || '----'}}</td>
-			<td>{{item.total | currency:"$" || '----'}}</td>
-			<td>{{item.fuelGrade || '----'}}</td>
+			<td class="text-right">{{(item.gallons | number:2) || '----'}}</td>
+			<td class="text-right">{{(item.total | currency:"$") || '----'}}</td>
+			<!--<td>{{item.fuelGrade || '----'}}</td>-->
 		</tr>
 	</tbody>
 </table>

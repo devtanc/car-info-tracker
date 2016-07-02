@@ -53,6 +53,33 @@ table caption {
 	background-color: lightblue;
 }
 
+img {
+	display: block;
+	margin: 0px auto;
+}
+
+table#navBar {
+	width: 100%;
+}
+
+table#navBar td {
+	text-align: center;
+}
+
+table#navBar td div {
+	padding: 7px 15px;
+	margin: 3px 15px;
+	border-radius: 3px;
+}
+
+table#navBar td div.active {
+	border: 1px solid darkgray;
+}
+
+table#navBar td div:hover {
+	cursor:pointer;
+	background-color: aliceblue;
+}
 /*
  * These are the default styles applied to the stock Google Places Autocomplete component. Importantly they preserve
  * the required "powered by Google" logo.

@@ -8,9 +8,46 @@ carTrackerApp.controller('MenuController', ['$scope', '$location', function($sco
 }]);
 
 carTrackerApp.controller('CarTrackerController', ['$scope', 'dynamoReq', function($scope, dynamoReq) {
+	$scope.navPills = [
+		{
+			name: 'Utah',
+			value: 'UT',
+			active: true,
+		},
+		{
+			name: 'Arizona',
+			value: 'AZ',
+			active: false,
+		},
+	];
+
 	dynamoReq.get('recent').then(function(history) {
 		$scope.history = dynamoReq.parseTimestamps(history);
+		$scope.setMapCenter('UT');
 	});
+
+	$scope.selectPill = function(pill) {
+		$scope.navPills.forEach(function(p) {
+			p.active = false;
+		});
+		pill.active = true;
+	}
+
+	$scope.setMapCenter = function(center) {
+		var mapCenter;
+		if (center === 'AZ') mapCenter = 'Cordes+Lakes,AZ';
+		else mapCenter = center;
+		
+		var mapZoom = 6;
+		var mapSize = '320x320';
+		var staticMapUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=' + mapCenter + '&zoom=' + mapZoom + '&size=' + mapSize + '&maptype=roadmap&markers=size:mid|color:red';
+		
+		$scope.history.forEach(function(item) {
+			if(item.location.indexOf(' ' + center + ' ') > -1) staticMapUrl += '|' + encodeURIComponent(item.location);
+		});
+
+		$scope.staticMapUrl = staticMapUrl;
+	}
 
 	var BLANK  = {
 		"timestamp": "",
