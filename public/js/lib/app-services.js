@@ -105,8 +105,8 @@ carTrackerApp.service('dynamoReq', ['$http', function($http) {
 	this.parseTimestamps = function(obj) {
 		obj.forEach(function(element) {
 			if (element.timestamp) {
-				var date = new Date(element.timestamp);
-				element.timestamp = date.toLocaleDateString();
+				var date = moment(element.timestamp);
+				element.timestamp = date.format('YYYY-MM-DD');
 			}
 		});
 		return obj;

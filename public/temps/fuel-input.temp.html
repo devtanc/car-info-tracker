@@ -53,7 +53,7 @@
 		</tr>
 	</thead>
 	<tbody class="text-muted">
-		<tr ng-repeat="item in history | orderBy:'timestamp'">
+		<tr ng-repeat="item in history | limitTo:10 | orderBy:'timestamp'">
 			<th>{{item.timestamp || '----'}}</th>
 			<td>{{item.odometer || '----'}}</td>
 			<td>{{item.gallons || '----'}}</td>
