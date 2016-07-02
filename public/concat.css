@@ -78,7 +78,6 @@ table#navBar td div.active {
 
 table#navBar td div:hover {
 	cursor:pointer;
-	background-color: aliceblue;
 }
 /*
  * These are the default styles applied to the stock Google Places Autocomplete component. Importantly they preserve
