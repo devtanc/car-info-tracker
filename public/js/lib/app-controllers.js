@@ -8,6 +8,7 @@ carTrackerApp.controller('MenuController', ['$scope', '$location', function($sco
 }]);
 
 carTrackerApp.controller('CarTrackerController', ['$scope', 'dynamoReq', function($scope, dynamoReq) {
+	var STATIC_MAPS_API_KEY = 'AIzaSyAQYgDlP3t7UyoUtNVK54tjAg1j7W4UBBs';
 	$scope.navPills = [
 		{
 			name: 'Utah',
@@ -46,7 +47,7 @@ carTrackerApp.controller('CarTrackerController', ['$scope', 'dynamoReq', functio
 			if(item.location.indexOf(' ' + center + ' ') > -1) staticMapUrl += '|' + encodeURIComponent(item.location);
 		});
 
-		$scope.staticMapUrl = staticMapUrl;
+		$scope.staticMapUrl = staticMapUrl + '&key=' + STATIC_MAPS_API_KEY;
 	}
 
 	var BLANK  = {
