@@ -25,12 +25,14 @@ deploy:
   on: &2
     repo: devtanc/car-info-tracker
   bucket: aws-codestar-us-west-2-082659734858-devtanc-demos-pipe
+  region: us-west-2
   upload_dir: "/travis"
   revision_type: github
 - provider: codedeploy
   access_key_id: AKIAIQEUERT6BHRTC26Q
   secret_access_key: *1
   bucket: aws-codestar-us-west-2-082659734858-devtanc-demos-pipe
+  region: us-west-2
   key: "/travis/app.zip"
   bundle_type: zip
   application: devtanc-demos
