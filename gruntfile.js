@@ -27,12 +27,35 @@ module.exports = function(grunt) {
 				src: ['./public/js/min/min-safe/concat.js'],
 				dest: './public/js/min/app-min.js'
 			}
+		},
+		compress: {
+			main: {
+				options: {
+					archive: 'app.zip'
+				},
+				files: [
+					{
+						src: [
+							'car-tracker-server.js',
+							'dynamo.js',
+							'logger.js',
+							'public/**',
+							'config/**',
+							'node_modules/**',
+						],
+						dest: '/'
+					},
+				]
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-ng-annotate');
+	grunt.loadNpmTasks('grunt-contrib-compress');
+	
 
 	grunt.registerTask('default', ['ngAnnotate', 'concat', 'uglify']);
+	grunt.registerTask('build', ['ngAnnotate', 'concat', 'uglify', 'compress']);
 };
