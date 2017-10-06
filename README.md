@@ -1,4 +1,5 @@
 # car-info-tracker
+[![Build Status](https://travis-ci.org/devtanc/car-info-tracker.svg?branch=master)](https://travis-ci.org/devtanc/car-info-tracker)
 Simple webserver and app for tracking car usage and maintenance
 Uses AWS DynamoDB as the backing database, and config-envy to secure credentials
 
