@@ -14,6 +14,7 @@ cache:
   - node_modules
 before_deploy:
 - mkdir -p dpl_cd_upload
+- ls
 - mv app.zip dpl_cd_upload/app.zip
 deploy:
 - provider: s3
