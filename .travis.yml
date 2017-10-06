@@ -24,16 +24,16 @@ deploy:
   skip_cleanup: true
   on: &2
     repo: devtanc/car-info-tracker
-  bucket: aws-codestar-us-west-2-082659734858-devtanc-demos-pipe
+  bucket: devtanc-travis-ci-pipeline-resources
   region: us-west-2
-  upload_dir: "/travis"
+  upload_dir: "/builds"
   revision_type: github
 - provider: codedeploy
   access_key_id: AKIAIQEUERT6BHRTC26Q
   secret_access_key: *1
-  bucket: aws-codestar-us-west-2-082659734858-devtanc-demos-pipe
+  bucket: devtanc-travis-ci-pipeline-resources
   region: us-west-2
-  key: "/travis/app.zip"
+  key: "/builds/app.zip"
   bundle_type: zip
   application: devtanc-demos
   deployment_group: devtanc-demos-deploy
