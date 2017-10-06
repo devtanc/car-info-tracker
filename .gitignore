@@ -34,3 +34,4 @@ node_modules
 /public/styles
 /config/*.env
 .DS_Store
+/*.zip

@@ -4,12 +4,15 @@ node_js:
 install:
 - npm install
 before_script:
-- npm install -g gulp-cli
+- npm install -g grunt-cli
 script:
 - npm build
 cache:
   directories:
   - node_modules
+before_deploy:
+- mkdir -p dpl_cd_upload
+- mv app.zip dpl_cd_upload/app.zip
 deploy:
 - provider: s3
   access_key_id: AKIAIQEUERT6BHRTC26Q
@@ -31,9 +34,6 @@ deploy:
   application: devtanc-demos
   deployment_group: devtanc-demos-deploy
   on: *2
-before_deploy:
-- mkdir -p dpl_cd_upload
-- mv app.zip dpl_cd_upload/app.zip
 env:
   global:
   - secure: hgeXOaQ+aHK/oUufxt6WJynfjzbcGvDMW3a2JweFWdMMMKE3t+ttE43aYvU50fLEamjpK4VsMKQrF0vMMM4G1mLzGDDGWDTGcsw7aePO3PRxNCauaP6lgzj6eZckJQUkSfOjmdBEqK3B1jji7P2q4riZR0lK1jW62wi59h1Vc82wqeqL/OzsrK0iaGDMRBRfVVhgGT1DfrxfXkc/hhnHBZ+tHsqd3Djb2bVANKiI408me3ezhD4ZWljehB/cbISnjPJ11GisMAk2VnnFESE4ER6x7IsKSkq0/WYYEyS3J8kz3hhqiPC2Pl5W8w++ncWsjpyYWFFOD3/VXlnagES7/pXNpEFH/tFMDGTOj1yO52zH5CVdJvnz60QcuO4a3TitcmsUMgHkd4hkWGHzf408/wtuGV+BNQrvYVVTyUB2lfTO3sn91rzXhJFwWKIz7jVpJCWBVBQ0J20bcqsH0O8wzaQ7S4wwUF9+c4+7zHFlu9YUCqlyH2NrZ+wgdygY231ze1o/Uw6BuN0zJIPA0CS9L5cWul/vPhIplSgU/jwqDWR8JJp8GEFJb12dW9R0JBgI8f2KjMbYZC8Kag9U/T2/XHlOJJMLQn4ibF1SYZPbop2ibj35HkidIOKyWMvgFKVF8Wudro1mvdt+W4Qne9LaR/lpvf8EvGzdo3zzQwgOMZ8=
