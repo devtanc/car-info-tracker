@@ -9,13 +9,12 @@ before_script:
 - npm install -g grunt-cli
 script:
 - npm run build
+after_script:
+- mkdir -p dpl_cd_upload
+- mv app.zip dpl_cd_upload/app.zip
 cache:
   directories:
   - node_modules
-before_deploy:
-- ls
-- mkdir -p dpl_cd_upload
-- mv app.zip dpl_cd_upload/app.zip
 deploy:
 - provider: s3
   access_key_id: AKIAIQEUERT6BHRTC26Q
