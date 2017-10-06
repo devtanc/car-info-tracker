@@ -13,6 +13,7 @@ cache:
   directories:
   - node_modules
 before_deploy:
+- ls
 - mkdir -p dpl_cd_upload
 - mv app.zip dpl_cd_upload/app.zip
 deploy:
