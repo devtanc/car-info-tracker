@@ -41,7 +41,6 @@ module.exports = function(grunt) {
 							'logger.js',
 							'public/**',
 							'config/**',
-							'node_modules/**',
 						],
 						dest: '/'
 					},
