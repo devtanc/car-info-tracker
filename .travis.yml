@@ -15,28 +15,28 @@ cache:
 after_success:
 - mkdir -p dpl_cd_upload
 - mv app.zip dpl_cd_upload/app.zip
-deploy:
-- provider: s3
-  access_key_id: AKIAIQEUERT6BHRTC26Q
-  secret_access_key: &1
-    secure: DZBb4s8UqtZhUZ11qktKXTFCFAU3UyDWvbQzVEfg6yOqbfigTKf99MXqxkd+b9ezOnVv46Dh0IbeqY8vui7xaHPGQy9dhkld9zJZTh30D73r59IfupBCOIwG26tSXEvEhciwZX9e++zSJNKOwHvhvcj8BMuflyNGBe5FOhQ1SB0fbx7krxM1odW3KYmgFURbZQPVolOAz7q2d8VWEcrIG9MSnNns9YyHHJ5xFNmMrNZRFfbmcOmwUr1Xyh4YQm6XPhZhDFS5/kg3NqEFIxbgnDVr+IMY1LddjrFZRL5fhDW7bRY9gknWqQDDwzLaAr1+ZOJ2eNNHmyLxn81hMj1/pOn9VWuTul2iOolBcHyICcWZytjjoJqDYXGZVATU7gDqhCQkDfa20klz0YHx7c03TxmRmd1dFR+vri9g0AZbEugsDA4+6nVarFb+esTtaEghFT5OX6kA1VXUoJcqSRH5m8C7l0/qpRM4ZN/paObxpL2iG3juFBUmSdINnQ9Zf1M0IfBSrEuTBhYaqPhEHrL07oZNq3fL2intkWETeojsRHs9/J89dwYnhIU9Y1hUnsqhUDQeWh5WntWh0lfUz5LKSONBpdpvNE3MDDRhSzCx7CJhX1cxu5n5Wq7v8r0K4/ab/p6JmzoYqTcjbXq4qHQ+HiRjJol11d0DbZvyW5APX3E=
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: devtanc/car-info-tracker
-  bucket: devtanc-travis-ci-pipeline-resources
-  region: us-west-2
-  upload_dir: "/builds"
-- provider: codedeploy
-  access_key_id: AKIAIQEUERT6BHRTC26Q
-  secret_access_key: *1
-  bucket: devtanc-travis-ci-pipeline-resources
-  region: us-west-2
-  key: "/builds/app.zip"
-  bundle_type: zip
-  application: devtanc-demos
-  deployment_group: devtanc-demos-deploy
-  on: *2
+# deploy:
+# - provider: s3
+#   access_key_id: AKIAIQEUERT6BHRTC26Q
+#   secret_access_key: &1
+#     secure: DZBb4s8UqtZhUZ11qktKXTFCFAU3UyDWvbQzVEfg6yOqbfigTKf99MXqxkd+b9ezOnVv46Dh0IbeqY8vui7xaHPGQy9dhkld9zJZTh30D73r59IfupBCOIwG26tSXEvEhciwZX9e++zSJNKOwHvhvcj8BMuflyNGBe5FOhQ1SB0fbx7krxM1odW3KYmgFURbZQPVolOAz7q2d8VWEcrIG9MSnNns9YyHHJ5xFNmMrNZRFfbmcOmwUr1Xyh4YQm6XPhZhDFS5/kg3NqEFIxbgnDVr+IMY1LddjrFZRL5fhDW7bRY9gknWqQDDwzLaAr1+ZOJ2eNNHmyLxn81hMj1/pOn9VWuTul2iOolBcHyICcWZytjjoJqDYXGZVATU7gDqhCQkDfa20klz0YHx7c03TxmRmd1dFR+vri9g0AZbEugsDA4+6nVarFb+esTtaEghFT5OX6kA1VXUoJcqSRH5m8C7l0/qpRM4ZN/paObxpL2iG3juFBUmSdINnQ9Zf1M0IfBSrEuTBhYaqPhEHrL07oZNq3fL2intkWETeojsRHs9/J89dwYnhIU9Y1hUnsqhUDQeWh5WntWh0lfUz5LKSONBpdpvNE3MDDRhSzCx7CJhX1cxu5n5Wq7v8r0K4/ab/p6JmzoYqTcjbXq4qHQ+HiRjJol11d0DbZvyW5APX3E=
+#   local_dir: dpl_cd_upload
+#   skip_cleanup: true
+#   on: &2
+#     repo: devtanc/car-info-tracker
+#   bucket: devtanc-travis-ci-pipeline-resources
+#   region: us-west-2
+#   upload_dir: "/builds"
+# - provider: codedeploy
+#   access_key_id: AKIAIQEUERT6BHRTC26Q
+#   secret_access_key: *1
+#   bucket: devtanc-travis-ci-pipeline-resources
+#   region: us-west-2
+#   key: "/builds/app.zip"
+#   bundle_type: zip
+#   application: devtanc-demos
+#   deployment_group: devtanc-demos-deploy
+#   on: *2
 env:
   global:
   - secure: hgeXOaQ+aHK/oUufxt6WJynfjzbcGvDMW3a2JweFWdMMMKE3t+ttE43aYvU50fLEamjpK4VsMKQrF0vMMM4G1mLzGDDGWDTGcsw7aePO3PRxNCauaP6lgzj6eZckJQUkSfOjmdBEqK3B1jji7P2q4riZR0lK1jW62wi59h1Vc82wqeqL/OzsrK0iaGDMRBRfVVhgGT1DfrxfXkc/hhnHBZ+tHsqd3Djb2bVANKiI408me3ezhD4ZWljehB/cbISnjPJ11GisMAk2VnnFESE4ER6x7IsKSkq0/WYYEyS3J8kz3hhqiPC2Pl5W8w++ncWsjpyYWFFOD3/VXlnagES7/pXNpEFH/tFMDGTOj1yO52zH5CVdJvnz60QcuO4a3TitcmsUMgHkd4hkWGHzf408/wtuGV+BNQrvYVVTyUB2lfTO3sn91rzXhJFwWKIz7jVpJCWBVBQ0J20bcqsH0O8wzaQ7S4wwUF9+c4+7zHFlu9YUCqlyH2NrZ+wgdygY231ze1o/Uw6BuN0zJIPA0CS9L5cWul/vPhIplSgU/jwqDWR8JJp8GEFJb12dW9R0JBgI8f2KjMbYZC8Kag9U/T2/XHlOJJMLQn4ibF1SYZPbop2ibj35HkidIOKyWMvgFKVF8Wudro1mvdt+W4Qne9LaR/lpvf8EvGzdo3zzQwgOMZ8=
